@@ -1,0 +1,13 @@
+- name: Install php-fpm
+  apt:
+    pkg:
+      - 8.3.8-fpm
+    update_cache: yes
+  become: yes
+
+- name: Set port
+  lineinfile:
+    path: '{{ conf_file }}'
+    regexp: '^listen ='
+    line: 'listen = 0.0.0.0:9000'
+  become: yes
